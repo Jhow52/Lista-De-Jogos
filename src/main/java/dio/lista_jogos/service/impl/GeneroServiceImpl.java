@@ -1,18 +1,14 @@
 package dio.lista_jogos.service.impl;
 
-import dio.lista_jogos.handler.GeneroNotFoundException;
 import dio.lista_jogos.model.Genero;
 import dio.lista_jogos.repository.GeneroRepository;
 import dio.lista_jogos.service.GeneroService;
-import dio.lista_jogos.util.GeneroUtils;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.text.Normalizer;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Optional;
-
-import static dio.lista_jogos.util.GeneroUtils.normalizar;
 
 @Service
 public class GeneroServiceImpl implements GeneroService{
@@ -34,7 +30,7 @@ public class GeneroServiceImpl implements GeneroService{
 
     public Genero create(Genero genero) {
         // Normaliza o nome para o campo nomeNormalizado
-        String nomeNormalizado = normalizar(genero.getNomeOriginal());
+        String nomeNormalizado = normalizar(genero.getNomeOriginalGenero());
         genero.setNomeNormalizado(nomeNormalizado);
         return generoRepository.save(genero);
     }
@@ -49,9 +45,17 @@ public class GeneroServiceImpl implements GeneroService{
         }
 
         Genero novoGenero = new Genero();
-        novoGenero.setNomeOriginal(nomeGenero);
+        novoGenero.setNomeOriginalGenero(nomeGenero);
         novoGenero.setNomeNormalizado(nomeNormalizado);
         return generoRepository.save(novoGenero);
+    }
+
+    @Override
+    public Genero remover(Long id, Genero genero) {
+        Genero generoExistente = generoRepository.findById(id).orElseThrow(() -> new RuntimeException("Genero não encontrado"));
+        generoRepository.delete(generoExistente);
+
+        return generoExistente;
     }
 
     public String normalizar(String texto) {

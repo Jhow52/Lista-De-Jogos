@@ -13,7 +13,7 @@ public class Genero {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nomeOriginal;
+    private String nomeOriginalGenero;
     @Column(unique = true)
     private String nomeNormalizado;
 
@@ -32,12 +32,12 @@ public class Genero {
         this.id = id;
     }
 
-    public String getNomeOriginal() {
-        return nomeOriginal;
+    public String getNomeOriginalGenero() {
+        return nomeOriginalGenero;
     }
 
-    public void setNomeOriginal(String nomeOriginal) {
-        this.nomeOriginal = nomeOriginal;
+    public void setNomeOriginalGenero(String nomeOriginalGenero) {
+        this.nomeOriginalGenero = nomeOriginalGenero;
     }
 
     public String getNomeNormalizado() {
@@ -51,7 +51,7 @@ public class Genero {
     @JsonCreator
     public static Genero fromString(String value) {
         Genero g = new Genero();
-        g.setNomeOriginal(value);
+        g.setNomeOriginalGenero(value);
         return g;
     }
 }

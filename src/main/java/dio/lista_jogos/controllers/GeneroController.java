@@ -3,6 +3,7 @@ package dio.lista_jogos.controllers;
 import dio.lista_jogos.model.Genero;
 import dio.lista_jogos.repository.GeneroRepository;
 import dio.lista_jogos.service.GeneroService;
+import dio.lista_jogos.service.dto.JogosRequestDeleteDTO;
 import dio.lista_jogos.service.impl.GeneroServiceImpl;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -17,6 +18,8 @@ public class GeneroController {
 
     private GeneroServiceImpl generoService;
 
+    Genero genero = new Genero();
+
     public GeneroController(GeneroServiceImpl generoService) {
         this.generoService = generoService;
     }
@@ -29,7 +32,14 @@ public class GeneroController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Genero> buscarPorId(@PathVariable Long id){
-        Genero genero = generoService.findById(id);
+        genero = generoService.findById(id);
         return ResponseEntity.ok(genero);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Genero> deletarGenero(@PathVariable Long id, @RequestBody JogosRequestDeleteDTO deleteDTO){
+        genero.setId(deleteDTO.getId());
+        Genero removido = generoService.remover(id, genero);
+        return ResponseEntity.ok(removido);
     }
 }

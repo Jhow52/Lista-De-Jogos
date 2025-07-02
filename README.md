@@ -1,6 +1,7 @@
 # 🎮 Lista de Jogos com Gêneros - Spring Boot API
 
 Este projeto é uma API RESTful desenvolvida com **Spring Boot** para gerenciar uma lista de jogos, com seus respectivos gêneros. A aplicação permite o cadastro, listagem e associação de jogos a seus gêneros, garantindo que os gêneros sejam tratados de forma padronizada (nome normalizado em minúsculo).
+Atualmente, a persistência dos dados está sendo feita com o **banco de dados MySQL**, proporcionando mais robustez e flexibilidade no armazenamento e manipulação das informações.
 
 
 ---
@@ -33,7 +34,7 @@ Este projeto é uma API RESTful desenvolvida com **Spring Boot** para gerenciar 
 - Spring Web
 - Spring Data JPA
 - Swagger UI
-- H2 Database (banco de dados em memória)
+- MySQL
 - Hibernate
-- Postman (para testes de API)
+- Postman
 - Maven

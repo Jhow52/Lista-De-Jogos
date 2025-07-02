@@ -7,4 +7,6 @@ import java.util.List;
 public interface JogosService {
     Jogos criarJogo(Jogos jogo);
     List<Jogos> listarJogos();
+    Jogos atualizar(Long id, Jogos jogo);
+    Jogos remover(Long id, Jogos jogo);
 }

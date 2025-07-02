@@ -7,4 +7,5 @@ import java.util.List;
 public interface GeneroService {
     Genero create(Genero generoCriado);
     Genero criarOuBuscarGenero(String nomeOriginal);
+    Genero remover(Long id, Genero genero);
 }
